@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.shipping-method, .payment-methods, .cart-summary {
+    margin-bottom: 30px;
+}
+.method-options {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.cart-summary img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.cart-summary table {
+    width: 100%;
+    margin-top: 15px;
+}
+.cart-summary td {
+    padding: 10px;
+}
+.total, .shipping-fee {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.discount-code {
+    display: flex;
+    margin-top: 20px;
+}
+.discount-code input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.discount-code button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.complete-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.complete-order button {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+span {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #28a745;
+    margin-left: 50px;
+}
+.chitiet {
+    margin-right: 50px;
+}

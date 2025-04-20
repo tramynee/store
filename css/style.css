@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+}
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+header {
+    width: 100%;
+    height: 400px;
+    background-image: url(../img/nền\ dầu\ thơm.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+nav {
+    width: 100%;
+    height: 65px;
+    background-color: rgb(172, 18, 105);
+}
+nav ul li a{
+    line-height: 50px;
+    font-weight: bolder;
+    color: rgb(229, 100, 158);
+    text-decoration: none;
+    line-height: 65px;
+}
+#content {
+    width: 1000px;
+    height: 100%;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px white;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 1em;
+    color: rgb(229, 100, 158);
+}
+
+.add-to-cart {
+    background-color:  rgb(229, 100, 158);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.add-to-cart:hover {
+    background-color: #db2bb2;
+}
+.product-card button {
+    width: 80%;
+    margin-top: 5px;
+    font-size: smaller;
+    height: 40px;
+}
+.product-card button a {
+    text-decoration: none;
+    color: white;
+}
+.footer {
+    background-color: #f7f7f7;
+    padding: 20px;
+    font-family: Arial;
+    margin-top: 50px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.footer-contact, .footer-social, .footer-payment {
+    text-align: center;
+}
+
+.footer-contact p, .footer-social p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.footer-contact a {
+    color: #d72db8;
+    text-decoration: none;
+}
+
+.footer-social img, .footer-payment img {
+    width: 50px;
+    margin: 0 8px;
+}
+
+.footer-links {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.85em;
+}
+
+.footer-certifications {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer-certifications img {
+    margin-right: 10px;
+}
+
+.language-selector {
+    padding: 5px;
+    font-size: 0.9em;
+    color:rgb(229, 100, 158);
+}

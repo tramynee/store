@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Double Y's SHOP</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <style>
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .divider span {
+            margin: 0 10px; /* Khoảng cách giữa chữ và đường gạch */
+        }
+        
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1; /* Chiều dài đường gạch */
+            border-bottom: 1px solid #e651a3; /* Màu của đường gạch */
+        }
+        
+        .login-card {
+            background-color: #fff; /* Màu nền trắng cho khung */
+            border-radius: 10px; /* Bo tròn các góc */
+            padding: 40px; /* Thêm khoảng cách bên trong khung */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Đổ bóng cho khung */
+            width: 450px; /* Chiều rộng khung */
+        }
+        .btn-orange {
+            background-color: #c0759c; /* Màu nền cam cho nút */
+            border-color: #c0759c; /* Màu viền cam cho nút */
+            color: #fff; /* Màu chữ trắng */
+        }
+        
+        .btn-orange:hover {
+            background-color: #c0759c; /* Màu nền khi hover */
+            border-color: #c0759c; /* Màu viền khi hover */
+        }
+       
+        
+    </style>
+</head>
+<body>
+    <header></header>
+    <nav>
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+                <a href="../html/index.html">TRANG CHỦ</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/vechungtoi.html">VỀ CHÚNG TÔI</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/lienhe.html">LIÊN HỆ</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="login-card">
+            <h3 class="text-center mb-4 text-orange">Đăng nhập</h3> <!-- Tiêu đề màu hồng-->
+
+            <div class="divider mb-3">
+                <span>Bằng tài khoản social</span>
+            </div>
+            <div class="social-buttons d-flex justify-content-between mb-3">
+                <button id="btn-google-login" class="btn btn-danger w-48">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button id="btn-facebook-login" class="btn btn-primary w-48">
+                    <img src="../img/logoFB.jpg" alt="Facebook" style="width: 20px; height: 20px;"/> Facebook
+                </button>
+            </div>
+            <div class="divider">
+                <span>Hoặc</span>
+            </div>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Địa chỉ email<span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password<span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-orange">Đăng Nhập</button>
+                </div>
+                <p class="text-muted text-center mt-3">
+                    <a href="#">Quên mật khẩu?</a> Hoặc <a href="../html/DangKy.html">Đăng ký</a>
+                </p>
+            </form>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-contact">
+                <p><strong>Hotline Support</strong><br>0374074603</p>
+                <p><strong>Email Us</strong><br><a href="mailto:doubleY's@gmail.com">doubleY's@gmail.com</a></p>
+            </div>
+            <div class="footer-social">
+                <p><strong>Follow Us</strong></p>
+                <a href="https://www.youtube.com/"><img src="../img/fb.jpg" alt="Facebook" /></a>
+                <a href="https://www.facebook.com/"><img src="../img/yt.png" alt="YouTube" /></a>
+                <a href="https://www.instagram.com/"><img src="../img/ig.png" alt="Instagram" /></a>
+            </div>
+            <div class="footer-payment">
+                <a href="#"><img src="../img/momo.png" alt="Momo" /></a>
+                <a href="#"><img src="../img/mcard.png" alt="MasterCard" /></a>
+                <a href="#"><img src="../img/visa.png" alt="Visa" /></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                Double Y's SHOP, 79 Âu Cơ, Phường 14, Quận 11, TP. Hồ Chí Minh.<br>
+                Điện thoại: 0374074603. Email: doubleY's@gmail.com<br>
+                Liên hệ hợp tác, phát triển sản phẩm: doubleY's@gmail.com
+            </p>
+            <p>Copyright © 2025 Double Y's SHOP</p>
+        </div>
+    </footer>
+</body>
+</html>

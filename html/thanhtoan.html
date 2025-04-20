@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thanh Toán</title>
+    <link rel="stylesheet" href="../css/thanhtoan.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>    
+<body>
+    <header></header>
+    
+    <!-- Thanh điều hướng đã cải thiện bằng Bootstrap -->
+    <nav>
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+                <a href="../html/index.html">TRANG CHỦ</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/vechungtoi.html">VỀ CHÚNG TÔI</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/lienhe.html">LIÊN HỆ</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/DangNhap.html"><p style="font-size: 40px; width: 50px; height: 50px;">&#128100;</p></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="payment-methods">
+            <h2 class="section-title">Phương thức thanh toán / Payment methods</h2>
+            <div class="method-options">
+                <label><input type="radio" name="payment-method" checked> Thanh toán khi giao hàng (Cash On Delivery)</label><br>
+                <label><input type="radio" name="payment-method"> Thanh toán online qua ví MoMo (Pay with MoMo E-Wallet)</label><br>
+                <label><input type="radio" name="payment-method"> Thẻ Visa/Master/JCB/Amex/CUP qua cổng OnePay</label><br>
+                <label><input type="radio" name="payment-method"> Thẻ ATM nội địa qua cổng OnePay</label>
+            </div>
+        </div>
+    
+        <div class="cart-summary">
+            <h2 class="section-title">Giỏ hàng</h2>
+            <table id="cart-table" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                <!-- Nội dung giỏ hàng sẽ được JavaScript thêm vào đây -->
+            </table>
+        </div>
+    
+        <div class="total">
+            <span>Tạm tính / Temporarily calculated</span>
+            <span class="chitiet" id="subtotal">0₫</span>
+        </div>
+        <div class="shipping-fee">
+            <span>Phí vận chuyển / Shipping fee</span>
+            <span class="chitiet" id="shipping-fee">45,000₫</span>
+        </div>
+        <div class="total">
+            <span>Tổng cộng / Total</span>
+            <span class="chitiet" id="total">0₫</span>
+        </div>
+        <div class="complete-order">
+            <a href="../html/cart.html" style="margin-left: 50px; text-decoration: none; font-weight: bold; width: fit-content; padding: 10px; background-color: rgb(11, 138, 26); border-radius: 10px; color: white;">Quay lại giỏ hàng</a>
+            <button onclick="completeOrder()">HOÀN TẤT ĐƠN HÀNG</button>
+        </div>
+    </div>
+    
+    <script>
+        // Lấy dữ liệu giỏ hàng từ localStorage
+        const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        // Hàm hiển thị giỏ hàng
+        function displayCart() {
+            const cartTable = document.getElementById('cart-table');
+            
+            // Xóa nội dung cũ nếu có
+            cartTable.innerHTML = '';
+    
+            // Duyệt qua từng sản phẩm trong giỏ hàng và tạo dòng trong bảng
+            cartData.forEach(item => {
+                const row = document.createElement('tr');
+                
+                // Tạo cột chứa ảnh và tên sản phẩm
+                const productCell = document.createElement('td');
+                productCell.innerHTML = `
+                    <img src="${item.image}" style="width: 100px; height: 80px; padding-right: 20px;" alt="${item.name}">
+                    <strong>Số lượng: x${item.quantity}</strong><br> 
+                    <strong>${item.name}</strong> 
+                `;
+                row.appendChild(productCell);
+                
+                // Tạo cột chứa giá sản phẩm
+                const priceCell = document.createElement('td');
+                priceCell.textContent = `${(item.price).toLocaleString('vi-VN')}₫`;
+                row.appendChild(priceCell);
+                
+                // Thêm dòng sản phẩm vào bảng
+                cartTable.appendChild(row);
+            });
+        }
+        // Gọi hàm để hiển thị giỏ hàng
+        displayCart();
+        function calculateTotal() {
+            // Tính tạm tính từ các sản phẩm trong giỏ hàng
+            let subtotal = cartData.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            
+            // Phí vận chuyển cố định
+            let shippingFee = 45000;
+            
+            // Tính tổng cộng
+            let total = subtotal + shippingFee;
+
+            // Cập nhật hiển thị
+            document.getElementById('subtotal').textContent = `${subtotal.toLocaleString('vi-VN')}₫`;
+            document.getElementById('shipping-fee').textContent = `${shippingFee.toLocaleString('vi-VN')}₫`;
+            document.getElementById('total').textContent = `${total.toLocaleString('vi-VN')}₫`;
+        }
+
+        function completeOrder() {
+            // Xóa toàn bộ sản phẩm trong giỏ hàng (localStorage)
+            localStorage.removeItem('cart');
+
+            // Làm rỗng mảng cartData
+            cartData.length = 0;
+
+            // Cập nhật lại hiển thị của giỏ hàng và tổng tiền
+            displayCart();
+            calculateTotal();
+
+            // Thông báo thanh toán thành công và chuyển về trang chủ
+            alert("Thanh toán thành công! Cảm ơn bạn đã mua hàng.");
+            window.location.href = "index.html";
+        }
+    // Tính toán tổng ban đầu khi tải trang
+    calculateTotal();
+    </script>
+</body>
+</html>

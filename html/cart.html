@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/stylecart.css">
+</head>
+<body>
+    <header></header>
+    
+    <!-- Thanh điều hướng đã cải thiện bằng Bootstrap -->
+    <nav>
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+                <a href="../html/index.html">TRANG CHỦ</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/vechungtoi.html">VỀ CHÚNG TÔI</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/lienhe.html">LIÊN HỆ</a>
+            </li>
+            <li class="nav-item">
+                <a href="../html/DangNhap.html"><img src="../img/user.png" alt="" style="width: 15%; margin-bottom: 5px;"></a>
+            </li>
+        </ul>
+    </nav>
+
+    <h2>Giỏ Hàng Của Bạn</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody id="cart-items"></tbody>
+    </table>
+
+    <!-- Nút thanh toán -->
+    <div class="total">
+        <div id="cart-total"></div>
+        <button onclick="redirectToPayment()" style=" width: 180px;font-weight: bold; background-color: rgb(245, 6, 6);">Thanh toán</button>
+    </div>
+
+    <footer class="footer">
+        <!-- Nội dung footer của bạn -->
+    </footer>
+
+    <script>
+        // Lấy dữ liệu giỏ hàng từ localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Hàm hiển thị sản phẩm trong giỏ hàng
+        function displayCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';  // Xóa nội dung cũ
+            let totalAmount = 0;
+
+            cart.forEach((product, index) => {
+                const itemTotal = product.price * product.quantity; // Tính thành tiền từng sản phẩm
+                totalAmount += itemTotal;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <img src="${product.image}" alt="${product.name}"><br>
+                        <h6>${product.name}</h6>
+                    </td>
+                    <td class="text">${product.price.toLocaleString()}đ</td>
+                    <td>
+                        <input type="number" value="${product.quantity}" min="1" 
+                               onchange="updateQuantity(${index}, this.value)">
+                    </td>
+                    <td class="text">${itemTotal.toLocaleString()}đ</td>
+                    <td><button onclick="removeItem(${index})"><img src="../img/thungrac.png" style="width: 30px; height: 30px; mix-blend-mode: color-burn;" alt=""></button></td>
+                `;
+                cartItems.appendChild(row);
+            });
+
+            // Hiển thị tổng tiền
+            document.getElementById('cart-total').innerText = `Tổng cộng: ${totalAmount.toLocaleString()}đ`;
+        }
+
+        // Hàm cập nhật số lượng
+        function updateQuantity(index, newQuantity) {
+            cart[index].quantity = parseInt(newQuantity);
+            saveCart();
+            displayCart();
+        }
+
+        // Hàm xóa sản phẩm khỏi giỏ hàng
+        function removeItem(index) {
+            cart.splice(index, 1);
+            saveCart();
+            displayCart();
+        }
+
+        // Hàm lưu giỏ hàng vào localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Hàm chuyển hướng đến trang thanh toán
+        function redirectToPayment() {
+            // Lưu tổng số tiền và chi tiết giỏ hàng vào localStorage
+            const totalAmount = cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
+            localStorage.setItem('totalAmount', totalAmount);
+            localStorage.setItem('cartData', JSON.stringify(cart));
+
+            // Chuyển hướng tới trang thanh toán
+            window.location.href = 'thanhtoan.html';
+        }
+
+        // Hiển thị giỏ hàng khi trang được tải
+        displayCart();
+    </script>
+</body>
+</html>
